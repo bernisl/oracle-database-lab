@@ -1,0 +1,32 @@
+== Sistema operativo y arquitectura ==
+Linux
+x86_64
+Entorno: Ubuntu en WSL 2
+PRETTY_NAME="Ubuntu 26.04.1 LTS"
+
+== Shell por defecto ==
+/bin/bash
+
+== Espacio libre en disco (unidad del repositorio) ==
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sdd       1007G  1.7G  955G   1% /
+
+== Memoria disponible para Linux y Docker ==
+               total        used        free      shared  buff/cache   available
+Mem:           7.4Gi       588Mi       6.5Gi       3.5Mi       476Mi       6.8Gi
+Swap:          2.0Gi          0B       2.0Gi
+
+== Herramientas de trabajo (Parte 0) ==
+OK git
+OK gh
+OK curl
+OK wget
+OK unzip
+OK jq
+OK tree
+OK htop
+OK tmux
+OK shellcheck
+
+== Git ==
+git version 2.53.0
