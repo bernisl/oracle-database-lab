@@ -1,0 +1,180 @@
+Script started on 2026-09-28 17:58:53+02:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="120" LINES="30"]
+[?2004h]0;berna@hpbluebe: ~/oracle-database-lab[01;32mberna@hpbluebe[00m:[01;34m~/oracle-database-lab[00m$ [H[2J]0;berna@hpbluebe: ~/oracle-database-lab[01;32mberna@hpbluebe[00m:[01;34m~/oracle-database-lab[00m$ # Ejercicio G1
+docker version
+docker info
+
+# Ejercicio G2
+docker run hello-world
+docker ps
+docker ps -a
+
+# Ejercicio G3
+docker pull alpine:3.20
+docker images
+
+# Ejercicio G4
+docker run -it --name prueba alpine:3.20 sh
+# (Dentro de alpine)
+cat /etc/os-release
+hostname
+ls /
+exit
+# (Fuera de alpine)
+docker ps -a --filter "name=prueba"
+
+# Ejercicio G5
+docker start -ai prueba
+# (Dentro de alpine)
+echo "dato importante" > /tmp/nota.txt
+cat /tmp/nota.txt
+exit
+# (Fuera de alpine)
+docker rm prueba
+docker run -it --name prueba2 alpine:3.20 sh
+# (Dentro del nuevo contenedor)
+cat /tmp/nota.txt
+exit
+
+# Ejercicio G6
+[7mdocker volume create datos-prueba[27m
+[7mdocker run -it --rm -v datos-prueba:/datos alpine:3.20 sh[27m
+[7m# (Dentro de alpine)[27m
+[7mecho "dato importante" > /datos/nota.txt[27m
+[7mexit[27m
+[7m# (Nuevo contenedor comprobando el volumen)[27m
+[7mdocker run -it --rm -v datos-prueba:/datos alpine:3.20 sh[27m
+[7m# (Dentro de alpine)[27m
+[7mcat /datos/nota.txt[27m
+[7mexit[27m
+[7m# (Inspección)[27m
+[7mdocker volume ls[27m
+[7mdocker volume inspect datos-prueba[27m
+
+[7m# Ejercicio G7[27m
+[7mdocker run -d --name web -p 8080:80 nginx:alpine[27m
+[7mdocker ps[27m
+[7mdocker port web[27m
+
+[7m# Ejercicio G8[27m
+[7mdocker logs web[27m
+[7mdocker logs --tail 3 web[27m
+[7mdocker exec web ls /usr/share/nginx/html[27m
+[7mdocker stats --no-stream web[27m
+
+[7m# Ejercicio G9[27m
+[7mdocker stop web[27m
+[7mdocker rm web prueba2 $(docker ps -aq --filter "ancestor=hello-world")[27m
+[7mdocker volume rm datos-prueba[27m
+[7mdocker system df[27m[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[Adocker volume create datos-prueba
+docker run -it --rm -v datos-prueba:/datos alpine:3.20 sh
+# (Dentro de alpine)
+echo "dato importante" > /datos/nota.txt
+exit
+# (Nuevo contenedor comprobando el volumen)
+docker run -it --rm -v datos-prueba:/datos alpine:3.20 sh
+# (Dentro de alpine)
+cat /datos/nota.txt
+exit
+# (Inspección)
+docker volume ls
+docker volume inspect datos-prueba
+
+# Ejercicio G7
+docker run -d --name web -p 8080:80 nginx:alpine
+docker ps
+docker port web
+
+# Ejercicio G8
+docker logs web
+docker logs --tail 3 web
+docker exec web ls /usr/share/nginx/html
+docker stats --no-stream web
+
+# Ejercicio G9
+docker stop web
+docker rm web prueba2 $(docker ps -aq --filter "ancestor=hello-world")
+docker volume rm datos-prueba
+docker system df
+[?2004l
+The command 'docker' could not be found in this WSL 2 distro.
+We recommend to activate the WSL integration in Docker Desktop settings.
+
+For details about using Docker Desktop with WSL 2, visit:
+
+https://docs.docker.com/go/wsl2/
+
+
+The command 'docker' could not be found in this WSL 2 distro.
+We recommend to activate the WSL integration in Docker Desktop settings.
+
+For details about using Docker Desktop with WSL 2, visit:
+
+https://docs.docker.com/go/wsl2/
+
+
+The command 'docker' could not be found in this WSL 2 distro.
+We recommend to activate the WSL integration in Docker Desktop settings.
+
+For details about using Docker Desktop with WSL 2, visit:
+
+https://docs.docker.com/go/wsl2/
+
+
+The command 'docker' could not be found in this WSL 2 distro.
+We recommend to activate the WSL integration in Docker Desktop settings.
+
+For details about using Docker Desktop with WSL 2, visit:
+
+https://docs.docker.com/go/wsl2/
+
+
+The command 'docker' could not be found in this WSL 2 distro.
+We recommend to activate the WSL integration in Docker Desktop settings.
+
+For details about using Docker Desktop with WSL 2, visit:
+
+https://docs.docker.com/go/wsl2/
+
+
+The command 'docker' could not be found in this WSL 2 distro.
+We recommend to activate the WSL integration in Docker Desktop settings.
+
+For details about using Docker Desktop with WSL 2, visit:
+
+https://docs.docker.com/go/wsl2/
+
+
+The command 'docker' could not be found in this WSL 2 distro.
+We recommend to activate the WSL integration in Docker Desktop settings.
+
+For details about using Docker Desktop with WSL 2, visit:
+
+https://docs.docker.com/go/wsl2/
+
+
+The command 'docker' could not be found in this WSL 2 distro.
+We recommend to activate the WSL integration in Docker Desktop settings.
+
+For details about using Docker Desktop with WSL 2, visit:
+
+https://docs.docker.com/go/wsl2/
+
+PRETTY_NAME="Ubuntu 26.04.1 LTS"
+NAME="Ubuntu"
+VERSION_ID="26.04"
+VERSION="26.04.1 LTS (Resolute Raccoon)"
+VERSION_CODENAME=resolute
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=resolute
+LOGO=ubuntu-logo
+hpbluebe
+[0m[01;36mbin[0m   [01;34mdev[0m  [01;34mhome[0m  [01;36mlib[0m    [01;34mlost+found[0m  [01;34mmnt[0m  [01;34mproc[0m  [01;34mrun[0m   [01;34msnap[0m  [01;34msys[0m  [01;34musr[0m
+[01;34mboot[0m  [01;34metc[0m  [01;32minit[0m  [01;36mlib64[0m  [01;34mmedia[0m       [01;34mopt[0m  [01;34mroot[0m  [01;36msbin[0m  [01;34msrv[0m   [30;42mtmp[0m  [01;34mvar[0m
+exit
+
+Script done on 2026-09-28 17:59:02+02:00 [COMMAND_EXIT_CODE="0"]
