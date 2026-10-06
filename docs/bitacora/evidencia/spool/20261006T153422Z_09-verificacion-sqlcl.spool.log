@@ -1,0 +1,19 @@
+== Estado de usuarios de negocio ==
+
+[1mUSERNAME[m           [1mACCOUNT_STATUS[m    [1mDEFAULT_TABLESPACE[m    
+__________________ _________________ _____________________ 
+ADMIN_ACADEMIA     OPEN              TBS_ACADEMIA          
+ADMIN_CLINICA      OPEN              TBS_CLINICA           
+ADMIN_FINTECH      OPEN              TBS_FINTECH           
+ADMIN_LOGISTICA    OPEN              TBS_LOGISTICA         
+ADMIN_RETAIL       OPEN              TBS_RETAIL            
+
+== Tablas creadas por esquema ==
+
+[1mOWNER[m                 [1mTOTAL_TABLAS[m 
+__________________ _______________ 
+ADMIN_ACADEMIA                   3 
+ADMIN_CLINICA                    3 
+ADMIN_LOGISTICA                  2 
+ADMIN_RETAIL                     3 
+
