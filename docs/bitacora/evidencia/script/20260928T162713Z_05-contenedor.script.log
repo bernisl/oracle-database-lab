@@ -1,0 +1,3 @@
+El contenedor oralab-26ai ya existe; no se crea de nuevo.
+CONTAINER ID   IMAGE                                                COMMAND                  CREATED         STATUS                   PORTS                                                                                      NAMES
+d381faffa01e   container-registry.oracle.com/database/free:latest   "/bin/bash -c $SCRIP…"   2 minutes ago   Up 2 minutes (healthy)   0.0.0.0:1521->1521/tcp, [::]:1521->1521/tcp, 0.0.0.0:8181->8181/tcp, [::]:8181->8181/tcp   oralab-26ai
