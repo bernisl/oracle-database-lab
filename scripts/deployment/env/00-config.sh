@@ -13,3 +13,7 @@ export BACKUP_DIR="$(pwd)/backups"
 export EVID="docs/bitacora/evidencia"
 
 ts() { date -u +%Y%m%dT%H%M%SZ; }
+# Lab 4: operacion del entorno (backup/restauracion y evidencia)
+export HELPER_IMG="ubuntu:24.04"
+export DATA_ROOT="/opt/oracle/oradata"
+export EVID_LAB4="docs/bitacora/lab4/evidencia"
