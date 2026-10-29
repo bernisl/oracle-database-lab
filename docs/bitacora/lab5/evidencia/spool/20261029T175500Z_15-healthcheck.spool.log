@@ -1,0 +1,66 @@
+SQL Format Cleared
+
+== 1. Disponibilidad ==
+
+COMPROBACION                       VALOR                                   
+---------------------------------- ----------------------------------------
+Instancia                          OPEN desde 2026-10-29 17:26             
+Base de datos                      READ WRITE · ARCHIVELOG                 
+PDB FREEPDB1                       READ WRITE                              
+
+== 2. Espacio: tablespaces por encima del 80 % (vacío = bien) ==
+
+== 3. Recuperabilidad: FRA y último archivado ==
+
+COMPROBACION                       VALOR                                   
+---------------------------------- ----------------------------------------
+FRA usada                          27 de 4096 MB (.7 %)                    
+Último redo archivado              2026-10-29 17:28                        
+Copias del control file            3                                       
+Grupos de redo con 1 solo miembro  0                                       
+
+== 4. Capacidad: uso frente a límites de la instancia (v$resource_limit) ==
+
+RESOURCE_NAME               AHORA     MAXIMO LIMITE    
+---------------------- ---------- ---------- ----------
+processes                      96        101        200
+sessions                      123        131        322
+transactions                    0          0  UNLIMITED
+
+== 5. Errores ORA- en el alert log en las últimas 24 h (v$diag_alert_ext) ==
+
+CUANDO      MENSAJE                                                                                   
+----------- ------------------------------------------------------------------------------------------
+10-29 17:28 ORA-19809: limit exceeded for recovery files                                              
+10-29 17:28 ORA-19815: WARNING: db_recovery_file_dest_size of 2097152 bytes is 100.00% used, and has 0
+10-29 17:27 ORA-1624 signalled during: ALTER DATABASE DROP LOGFILE GROUP 1...                         
+10-29 17:27 ORA-1609 signalled during: ALTER DATABASE DROP LOGFILE MEMBER '/opt/oracle/oradata/FREE/re
+10-29 17:27 ORA-1623 signalled during: ALTER DATABASE DROP LOGFILE GROUP 2...                         
+10-29 17:27 ORA-00800: soft external error, arguments: [Set Priority Failed], [LGWR], [Check traces an
+10-29 17:27 ORA-00800: soft external error, arguments: [Set Priority Failed], [VKTM], [Check traces an
+10-29 16:47 ORA-00800: soft external error, arguments: [Set Priority Failed], [LGWR], [Check traces an
+10-29 16:47 ORA-00800: soft external error, arguments: [Set Priority Failed], [VKTM], [Check traces an
+10-29 16:26 ORA-00800: soft external error, arguments: [Set Priority Failed], [LGWR], [Check traces an
+
+== 6. Cambios de log por hora en las últimas 24 h (muchos = redo pequeño o carga alta) ==
+
+HORA         CAMBIOS
+--------- ----------
+10-29 17h         14
+
+== 7. Copias de seguridad RMAN: las últimas (vacío = NO hay copias: alarma) ==
+
+== 8. Índices que piden atención (no válidos, invisibles olvidados, o con muchas hojas para sus filas) ==
+
+OWNER            PROBLEMA                          INDICES EJEMPLO                 
+---------------- ------------------------------ ---------- ------------------------
+ADMIN_CLINICA    sin estadísticas                        8 IDX_CLI_CITAS_FECHA     
+ADMIN_LOGISTICA  sin estadísticas                        4 SYS_C008726             
+ADMIN_RETAIL     sin estadísticas                        7 IDX_RET_DETALLE_PROD    
+("sin estadísticas" en esquemas vacíos es esperable; en uno con datos, el optimizador trabaja a ciegas: DBMS_STATS)
+
+== 9. Undo: errores de "snapshot too old" (ORA-01555) o falta de espacio en las últimas 24 h (0 y 0 = bien) ==
+
+ ORA_01555 SIN_ESPACIO_UNDO CONSULTA_MAS_LARGA_S
+---------- ---------------- --------------------
+         0                0                  352

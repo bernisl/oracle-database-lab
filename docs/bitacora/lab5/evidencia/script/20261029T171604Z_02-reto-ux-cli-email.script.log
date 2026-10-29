@@ -1,0 +1,16 @@
+
+Session altered.
+
+== Reto C: ANALYZE INDEX tiendasur.ux_cli_email VALIDATE STRUCTURE ==
+
+Index analyzed.
+
+
+NAME																     HEIGHT    LF_ROWS	  LF_BLKS    BR_BLKS ENTRADAS_POR_HOJA
+-------------------------------------------------------------------------------------------------------------------------------- ---------- ---------- ---------- ---------- -----------------
+  PCT_USED
+----------
+UX_CLI_EMAIL																  3	100000	      501	   3		   200
+	90
+
+
