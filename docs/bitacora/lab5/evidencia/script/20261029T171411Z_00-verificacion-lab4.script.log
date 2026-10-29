@@ -1,0 +1,14 @@
+== A.1 git tag -l lab*-final ==
+lab3-final
+lab4-final
+== Verificador del repo: scripts/lab4/10-verificacion-final.sh (version con la que se cerro el Lab 4) ==
+  [OK]    PFILE versionado
+  [OK]    config/.env fuera de Git
+  [OK]    backups/ fuera de Git
+
+RESULTADO: TODO OK. Lab 4 listo para entregar.
+== Verificador del kit v3: scripts/lab4/16-verificacion-final.sh (referencia) ==
+  [OK]    backups/ fuera de Git
+
+RESULTADO: 7 FALLO(S). Corrige antes de abrir el PR.
+NOTA: el Lab 4 se entrego con la version anterior del guion (evidencias 00-10). Los fallos del verificador v3 corresponden a partes K-O que no existian en esa version; el verificador del repo da TODO OK. El backup en frio de A.2 se hizo el 20261029T164604Z (evidencia 00-backup-lab4).
