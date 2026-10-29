@@ -8,7 +8,11 @@
 
 ### Punto de partida y banco de medida (A, B)
 
-**1.** En mi repositorio, el paso 6 dice lo mismo en las dos copias: «ninguno: el volumen contiene toda la base de datos». Lo dicen tanto `docs/bitacora/lab4/evidencia/script/20261023T095355Z_00-backup-lab3.script.log` como `script/20261029T164604Z_00-backup-lab4.script.log`. Por tanto, en mi caso no hay diferencia entre ambas. La copia lab3-final se hizo cuando los datafiles ya estaban dentro del volumen. El dato demuestra que la copia de lab4-final es autosuficiente: restaurar el volumen basta para recuperar toda la base, sin archivos sueltos fuera de él. `[REVISA: el PDF esperaba cinco datafiles fuera en lab3-final; explica por qué en tu entorno no aparecían]`
+**1.** En mi repositorio, el paso 6 dice lo mismo en las dos copias: «ninguno: el volumen contiene toda la base de datos». Lo dicen tanto `docs/bitacora/lab4/evidencia/script/20261023T095355Z_00-backup-lab3.script.log` como `script/20261029T164604Z_00-backup-lab4.script.log`. En mi caso no hay diferencia, y la causa es el **orden** en que hice el Lab 4. Según `docs/bitacora/lab4/evidencia/script/20261023T094630Z_03-reubicar-datafiles.script.log`, a las 09:46:30 los cinco datafiles de negocio estaban **fuera del volumen**, en `/opt/oracle/product/26ai/dbhomeFree/dbs/` (academia01, clinica01, fintech01, logistica01 y retail01), y se movieron dentro de `/opt/oracle/oradata/FREE/FREEPDB1/`. La copia lab3-final se hizo después, a las 09:53:55. Por eso ya no vio ningún archivo fuera. La segunda ejecución de la reubicación (10:04:26) lo confirma: «Nada que reubicar».
+
+Lo que demuestra la comparación es lo mismo que pretende el PDF. Antes de la reubicación, una copia del volumen **no** habría incluido esos cinco datafiles, porque vivían en el contenedor y no en el volumen. Después, la copia lab4-final es autosuficiente: restaurar el volumen basta para recuperar toda la base. El simulacro C lo probó al restaurar lab5-pre-simulacro y recuperar las 60 000 matrículas.
+
+Lección: la copia lab3-final no es una foto real del estado del Lab 3. Una copia de seguridad hay que hacerla **antes** de cambiar nada.
 
 **2.** Lo saco de `script/20261029T171506Z_01-perfil-tiendasur.script.log`, sección 1. CLIENTE tiene r = 100 000 filas en b = 1517 bloques, con R = 102 bytes por fila, así que bfr = 66. PEDIDO tiene r = 1 000 000 filas en b = 5320 bloques, con R = 32 bytes, así que bfr = 188. PEDIDO cabe casi el triple por bloque porque su fila mide un tercio: solo tiene números, una fecha y códigos cortos, mientras que CLIENTE lleva nombre, apellidos, email y DNI. Comprobación: ⌈1 000 000 / 188⌉ = 5320, que coincide con lo medido. En CLIENTE, ⌈100 000 / 66⌉ = 1516 frente a los 1517 medidos, porque bfr es una media.
 
@@ -110,10 +114,17 @@ Son tan distintos porque en C se restaura **toda** la base desde una copia en fr
 | ORA-00800 «Set Priority Failed» [LGWR] [VKTM] | Ruido conocido | El contenedor Docker no permite a Oracle subir la prioridad de esos procesos; aparece en cada arranque y no afecta a los datos |
 | ORA-00202, ORA-205 (18:25) | Efecto del laboratorio | Simulacro B: control03.ctl borrado a propósito |
 | ORA-63999, ORA-01110 file 16 (18:34) | Efecto del laboratorio | Simulacro D: academia01.dbf borrado a propósito |
-| ORA-01113 file 21 (18:34) | Efecto del laboratorio | tiendasur01.dbf pidió recuperación al reabrir FREEPDB1 tras el cierre forzado del simulacro D; Oracle la aplicó y ahora `v$recover_file` está vacío y el fichero ONLINE. `[REVISA: compruébalo en la traza FREE_ora_700.trc]` |
+| ORA-01113 file 21 (18:34:30) | Efecto del laboratorio | Simulacro D, ver detalle debajo |
 | Incidentes reales | Ninguno | — |
 
 La tabla se basa en `script/20261029T183516Z_15-healthcheck-tras-simulacros.script.log`, que repite el runbook después de los simulacros.
+
+**Detalle del ORA-01113 del fichero 21.** El fichero 21 es `tiendasur01.dbf`. El alert log (`v$diag_alert_ext`, 18:34:15-18:34:45) cuenta la secuencia:
+1. 18:34:21: CKPT detecta ORA-63999 sobre el datafile 16 y Oracle cierra FREEPDB1 de golpe (18:34:22). Al no haber checkpoint final, el resto de sus datafiles (12 a 21) quedan *fuzzy*, como tras un SHUTDOWN ABORT pero a nivel de PDB.
+2. 18:34:27-29: RMAN restaura el 16 y RECOVER le aplica el redo (secuencias 19 y 20).
+3. 18:34:30: `ALTER PLUGGABLE DATABASE FREEPDB1 OPEN` encuentra el fichero 21 sin recuperar (ORA-01113). Oracle lanza **solo** una recuperación de medios con el redo online sobre los ficheros 12 a 21 («Recovering data file 21 … 12») y abre READ WRITE a las 18:34:31.
+
+No es un incidente: después, `v$recover_file` está vacío, el fichero 21 está ONLINE y TiendaSur conserva sus 1 000 000 de pedidos y 100 000 clientes. Es la misma idea que el simulacro A, aplicada a una PDB.
 
 ## Tabla RTO / RPO de los simulacros
 
@@ -130,12 +141,14 @@ Además, en C el DROP **sin** PURGE se resolvió con FLASHBACK TABLE ... TO BEFO
 
 **Qué pasó:** los cuatro simulacros terminaron con la base abierta y los datos confirmados intactos. Solo se perdió lo que el diseño de C pierde a propósito: 2 s.
 
-**Qué sorprendió:** `[REVISA y escribe con tus palabras]`
-- En D, Oracle **cerró la PDB entera** (ORA-63999) en vez de dejar solo el tablespace fuera de línea. El RTO afectó a todo FREEPDB1, no solo a ACADEMIA.
+**Qué sorprendió:**
+- En D, Oracle **cerró la PDB entera** (ORA-63999) en vez de dejar solo el tablespace fuera de línea. El RTO afectó a todo FREEPDB1, no solo a ACADEMIA. Además, al reabrirla, tuvo que recuperar con el redo los demás datafiles de la PDB (ORA-01113 del fichero 21): perder un archivo afectó a la PDB completa.
+- La copia previa del simulacro C ocupa 1,3 GB, frente a los 551 MB de lab4-final. El banco TiendaSur y la FRA multiplican el tamaño, y con él el RTO de una restauración completa.
 - La distancia entre C y D: 64 s con RPO 2 s frente a 10 s con RPO 0. Con ARCHIVELOG más una copia RMAN se recupera más rápido **y** sin pérdida.
 - La recuperación de instancia de A fue invisible: un STARTUP normal y nada más.
 
-**Qué cambiaría:** `[REVISA]`
+**Qué cambiaría:**
+- Hacer la copia de partida **antes** de tocar nada. En el Lab 4, la reubicación se ejecutó 7 minutos antes que la copia lab3-final (ver respuesta 1).
 - Separar las copias del control file y los miembros de redo en volúmenes distintos. Aquí comparten volumen y no protegen de perder el disco.
 - Programar copias RMAN periódicas. Antes del simulacro D, el bloque 7 del runbook estaba vacío: no había ninguna copia.
 - Lanzar los simulacros largos (C) con un límite de tiempo mayor. Al hacerlo desde Claude Code pasó a segundo plano a los 120 s, y no hay que interrumpirlo nunca.
