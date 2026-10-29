@@ -1,0 +1,1 @@
+NOTA: esta base tiene 3 grupos de redo (el PDF supone 2). El paso 4c no fallo por ORA-01567 sino por ORA-01624 (grupo 1 ACTIVE, necesario para recuperacion de instancia). No se borro ningun grupo: siguen 3 grupos con 2 miembros cada uno. redo03b.log figura INVALID hasta que LGWR escriba por primera vez en el grupo 3.
