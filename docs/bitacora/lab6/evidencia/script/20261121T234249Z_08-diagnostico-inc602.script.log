@@ -1,0 +1,28 @@
+== EVIDENCIA alumno=E058 hora=2026-11-21T23:42:49Z origen=08-diagnostico
+== EVIDENCIA contenedor=f8a7dafbbfe8 dbid=1509902213 arranque=2026-11-21T22:55:25 scn=6389525
+== 1. ¿Quién espera, en qué y por culpa de quién? ==
+== 2. ¿Por qué fila exacta? ==
+== 3. Los bloqueos: quién TIENE el TX (lmode 6, block 1) y quién lo PIDE (request 6) ==
+== 4. ¿Cuánto trabajo se desharía si se termina al bloqueador? ==
+== 5. ASH lo guardó segundo a segundo (aunque el bloqueo ya no exista, esto queda) ==
+
+T          SID EVENT                           BLOQ
+-------- ----- ------------------------------ -----
+23:41:59   176 enq: TX - row lock contention     59
+23:41:58   176 enq: TX - row lock contention     59
+23:41:57   176 enq: TX - row lock contention     59
+23:41:56   176 enq: TX - row lock contention     59
+23:41:55   176 enq: TX - row lock contention     59
+== 6. Servicios: ¿están arrancados todos los que existen? (NO = existe, pero el listener no lo anuncia) ==
+
+    CON_ID NAME             ARRANCADO
+---------- ---------------- ---------
+         3 FREEPDB1         SI       
+         3 academia_app     NO       
+== 7. Cuentas que no son de Oracle y no están OPEN (LOCKED = a mano; LOCKED(TIMED) = intentos fallidos) ==
+Service "freepdb1" has 1 instance(s).
+  Instance "FREE", status READY, has 1 handler(s) for this service...
+-- Síntoma por el camino del consumidor (app.sh por academia_app):
+  USER          = app_academia
+  URL           = jdbc:oracle:thin:@//localhost:1521/academia_app
+  Error Message = ORA-12514: Cannot connect to database. Service academia_app is not registered with the listener at host localhost port 1521. (CONNECTION_ID=8DpCuombRB6wzHpR5Oynew==)

@@ -1,0 +1,20 @@
+== EVIDENCIA alumno=E058 hora=2026-11-21T23:43:21Z origen=08-validacion-inc602
+== EVIDENCIA contenedor=f8a7dafbbfe8 dbid=1509902213 arranque=2026-11-21T22:55:25 scn=6389591
+-- listener:
+Service "academia_app" has 1 instance(s).
+  Instance "FREE", status READY, has 1 handler(s) for this service...
+Service "freepdb1" has 1 instance(s).
+  Instance "FREE", status READY, has 1 handler(s) for this service...
+-- la aplicación conecta por academia_app:
+== EVIDENCIA alumno=E058 hora=2026-11-21T23:43:21Z origen=consumidor
+== EVIDENCIA contenedor=f8a7dafbbfe8 dbid=1509902213 arranque=2026-11-21T22:55:25 scn=6389593
+[1mSERVICIO[m        
+_______________ 
+academia_app    
+== 6. Servicios: ¿están arrancados todos los que existen? (NO = existe, pero el listener no lo anuncia) ==
+
+    CON_ID NAME             ARRANCADO
+---------- ---------------- ---------
+         3 FREEPDB1         SI       
+         3 academia_app     SI       
+== 7. Cuentas que no son de Oracle y no están OPEN (LOCKED = a mano; LOCKED(TIMED) = intentos fallidos) ==
