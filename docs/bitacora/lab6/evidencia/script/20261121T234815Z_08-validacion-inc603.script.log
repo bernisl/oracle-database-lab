@@ -1,0 +1,15 @@
+== EVIDENCIA alumno=E058 hora=2026-11-21T23:48:15Z origen=08-validacion-inc603
+== EVIDENCIA contenedor=f8a7dafbbfe8 dbid=1509902213 arranque=2026-11-21T22:55:25 scn=6390074
+-- la aplicación entra por academia_app:
+[1mSERVICIO[m        
+_______________ 
+academia_app    
+== 1. ¿Quién espera, en qué y por culpa de quién? ==
+== 2. ¿Por qué fila exacta? ==
+== 6. Servicios: ¿están arrancados todos los que existen? (NO = existe, pero el listener no lo anuncia) ==
+
+    CON_ID NAME             ARRANCADO
+---------- ---------------- ---------
+         3 FREEPDB1         SI       
+         3 academia_app     SI       
+== 7. Cuentas que no son de Oracle y no están OPEN (LOCKED = a mano; LOCKED(TIMED) = intentos fallidos) ==
