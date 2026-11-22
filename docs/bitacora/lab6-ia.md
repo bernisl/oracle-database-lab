@@ -20,16 +20,18 @@ CÓMO SE RELLENA (léelo y borra este comentario si quieres; el script de evalua
 
 
 ## Entrada 1
-- **Herramienta:** 
-- **Prompt (literal, copiado tal cual):**
+- **Herramienta: Claude** 
+- **Prompt (literal, copiado tal cual)**
 ```text
-
+que me corrija errores de muchos comandos que me dan fallo y no me permiten seguir
 ```
-- **Código recibido (el fragmento, o la ruta del archivo donde está):**
+- **Código recibido (el fragmento, o la ruta del archivo donde está):*
 ```sql
-
+otros comandos para resolver el problema
 ```
-- **Dónde lo usé (parte, script o pregunta):** 
-- **Propósito (para qué lo necesitaba):** 
+- **Dónde lo usé (parte, script o pregunta): lo usé en las partes donde me quedaba atascado porque no me funcionaban corectamente alginos comandos, y para la pregunta 20 de las evidencias** 
+- **Propósito (para qué lo necesitaba):resolver errores y ayudarme con las evidenvias de la pregunta 20** 
 - **Qué hace (con mis palabras; línea a línea si es SQL corto):** 
-- **Evidencia de ejecución (archivo de docs/bitacora/lab6/evidencia con mi cabecera):** 
+- **Evidencia de ejecución (archivo de docs/bitacora/lab6/evidencia con mi cabecera): INC-601: ALTER SYSTEM KILL SESSION '59,10364' IMMEDIATE. Evidencia 20261121T234159Z_08-intervencion-inc601.script.log.
+- INC-602: DBMS_SERVICE.START_SERVICE('academia_app') + SAVE STATE. Evidencia 20261121T234317Z_08-intervencion-inc602.script.log.
+- INC-603: la consulta a CDB_UNIFIED_AUDIT_TRAIL y ALTER USER app_academia ACCOUNT UNLOCK. Evidencias 20261121T234749Z_08-diagnostico-inc603.script.log y 20261121T234815Z_08-intervencion-inc603.script.log.** 
