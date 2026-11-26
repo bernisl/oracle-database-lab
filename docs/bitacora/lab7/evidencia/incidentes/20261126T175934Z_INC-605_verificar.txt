@@ -1,0 +1,10 @@
+== EVIDENCIA alumno=E058 hora=2026-11-26T17:59:34Z origen=t6/INC-605_verificar
+== EVIDENCIA contenedor=f8a7dafbbfe8 dbid=1509902213 arranque=2026-11-26T17:26:52 scn=6438853
+== INC-605 · verificar · alumno E058 · semilla 58
+
+Session altered.
+
+OK    Incidente INC-605 roto para E058 (semilla 58) el 2026-11-26 17:58 · cesta con 208000 filas nuevas
+OK    Estadísticas de CESTA: 208100 filas frente a 208100 reales
+OK    El informe une con HASH JOIN (sin bucles anidados por cada cesta)
+INFO  Estadísticas de CESTA bloqueadas ahora: NO (válido si están al día; justifícalo en la bitácora)

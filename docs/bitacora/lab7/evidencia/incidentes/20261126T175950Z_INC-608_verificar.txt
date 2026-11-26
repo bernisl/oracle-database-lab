@@ -1,0 +1,10 @@
+== EVIDENCIA alumno=E058 hora=2026-11-26T17:59:50Z origen=t6/INC-608_verificar
+== EVIDENCIA contenedor=f8a7dafbbfe8 dbid=1509902213 arranque=2026-11-26T17:26:52 scn=6438978
+== INC-608 · verificar · alumno E058 · semilla 58
+
+Session altered.
+
+OK    Incidente INC-608 roto para E058 (semilla 58) el 2026-11-26 17:59 · informe por estado = D
+FALLO Estimación para estado = 'D': 250000 filas (reales 28007)
+FALLO ESTADO tiene histograma: NONE
+FALLO La próxima recogida conservará el histograma: METHOD_OPT = FOR ALL COLUMNS SIZE 1
