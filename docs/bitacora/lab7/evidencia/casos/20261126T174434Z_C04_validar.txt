@@ -1,0 +1,15 @@
+== EVIDENCIA alumno=E058 hora=2026-11-26T17:44:35Z origen=t6/C04_validar
+== EVIDENCIA contenedor=f8a7dafbbfe8 dbid=1509902213 arranque=2026-11-26T17:26:52 scn=6421117
+
+SYS@FREE> ALTER SESSION SET CONTAINER = FREEPDB1;
+
+Session altered.
+
+SYS@FREE> SET ECHO OFF FEEDBACK OFF
+
+RESULTADO
+--------------------------------------------------------------------------------------------------------------
+OK    Sin disparador heredado que fuerce WORKAREA_SIZE_POLICY = MANUAL
+OK    El informe de 100 filas no toca TEMP (0 bloques)
+OK    Tiempo: 150 ms frente a 3020 ms del informe heredado
+OK    La ordenación del TOP 100 se resolvió en memoria (OPTIMAL)
