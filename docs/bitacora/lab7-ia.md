@@ -18,19 +18,23 @@ CÓMO SE RELLENA (léelo y borra este comentario si quieres; el script de evalua
   dices para qué lo usaste y adjuntas aquí el código y el prompt LITERAL.
 -->
 
-No he usado IA.
+Lo usé tmabien para muchos fallos que me daban los comandos
 
 ## Entrada 1
-- **Herramienta:** 
+- **Herramienta:** Claude
 - **Prompt (literal, copiado tal cual):**
 ```text
+Estoy resolviendo el incidente INC-605. Las estadísticas de la tabla CESTA indican 100 filas, pero la tabla tiene 208100. Al intentar recoger las estadísticas me aparece ORA-20005 porque están bloqueadas. ¿Me puedes explicar qué significa el error y qué pasos debería seguir para actualizar las estadísticas y comprobar que el plan de ejecución ha mejorado?
 
 ```
 - **Código recibido (el fragmento, o la ruta del archivo donde está):**
-```sql
+```text
+EXEC DBMS_STATS.UNLOCK_TABLE_STATS('T6', 'CESTA');
+EXEC DBMS_STATS.GATHER_TABLE_STATS('T6', 'CESTA');
 
 ```
-- **Dónde lo usé (parte, script o pregunta):** 
-- **Propósito (para qué lo necesitaba):** 
-- **Qué hace (con mis palabras; línea a línea si es SQL corto):** 
-- **Evidencia de ejecución (archivo de docs/bitacora/lab7/evidencia con mi cabecera):** 
+- **Dónde lo usé (parte, script o pregunta):** Parte G
+- **Propósito (para qué lo necesitaba):** Entender por qué fallaba la recogida de estadísticas y cómo resolver el bloqueo antes de volver a ejecutar el informe.
+- **Qué hace (con mis palabras; línea a línea si es SQL corto):** UNLOCK_TABLE_STATS quita el bloqueo de las estadísticas de la tabla CESTA.
+GATHER_TABLE_STATS vuelve a recoger las estadísticas para que reflejen las 208100 filas reales.
+- **Evidencia de ejecución (archivo de docs/bitacora/lab7/evidencia con mi cabecera):** incidentes/20261126T175934Z_INC-605_verificar.txt
