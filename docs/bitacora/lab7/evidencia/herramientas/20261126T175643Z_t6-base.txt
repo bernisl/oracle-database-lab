@@ -1,0 +1,8 @@
+== EVIDENCIA alumno=E058 hora=2026-11-26T17:56:43Z origen=t6/base
+== EVIDENCIA contenedor=f8a7dafbbfe8 dbid=1509902213 arranque=2026-11-26T17:26:52 scn=6433798
+== Líneas base registradas (T6.LINEA_BASE) ==
+
+HORA     CASO ETIQUETA             SQL_ID         PLAN_HASH       EJEC     MS_EJEC  GETS_EJEC FILAS_EJEC MEJORA
+-------- ---- -------------------- ------------- ---------- ---------- ----------- ---------- ---------- ----------
+17:53:55 C17  ANTES                0dbx7196jdajy 2571571058       3323       84.97       5245          1 x1.0
+17:56:43 C17  DESPUES              53mx77snb43uw 2982358210      32871        0.36         94          1 x236.0

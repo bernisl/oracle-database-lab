@@ -1,0 +1,25 @@
+== EVIDENCIA alumno=E058 hora=2026-11-26T17:44:09Z origen=t6/C03_provocar
+== EVIDENCIA contenedor=f8a7dafbbfe8 dbid=1509902213 arranque=2026-11-26T17:26:52 scn=6420853
+
+SYS@FREE> ALTER SESSION SET CONTAINER = FREEPDB1;
+
+Session altered.
+
+SYS@FREE> SET ECHO OFF
+
+PL/SQL procedure successfully completed.
+
+Table created.
+
+System altered.
+
+== 5 000 fichas de cliente con la versión de producción (literales) ... ==
+
+PL/SQL procedure successfully completed.
+
+MODO       LLAMADAS   MS_TOTAL MS_POR_FICHA
+-------- ---------- ---------- ------------
+LITERAL        5000       6260         1.25
+
+1 row selected.
+

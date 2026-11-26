@@ -1,0 +1,47 @@
+== EVIDENCIA alumno=E058 hora=2026-11-26T18:41:36Z origen=09-verificacion-final
+== EVIDENCIA contenedor=f8a7dafbbfe8 dbid=1509902213 arranque=2026-11-26T17:26:52 scn=6443347
+== Parte A · Punto de partida ==
+  [OK]    copia backups/20261126T172303Z_lab7-inicio íntegra
+  [OK]    CDB abierta y en ARCHIVELOG (herencia del Lab 5) (READWRITE/ARCHIVELOG)
+  [OK]    FREEPDB1 abierta (READWRITE)
+  [OK]    kit: scripts/t6/caso.sh
+  [OK]    kit: scripts/t6/t6.sh
+  [OK]    kit: scripts/t6/incidente.sh
+  [OK]    kit: scripts/t6/instalar.sh
+  [OK]    kit: scripts/t6/casos.tsv
+  [OK]    banco T6 (esquemas T6 y T6_APP) (2)
+  [OK]    FRA al 24 %
+== Partes B a F · Los 10 casos ★ (seis fases cada uno y validar sin FALLO) ==
+  [OK]    C01: seis fases y validación correcta (3 OK)
+  [OK]    C03: seis fases y validación correcta (3 OK)
+  [OK]    C04: seis fases y validación correcta (4 OK)
+  [OK]    C07: seis fases y validación correcta (3 OK)
+  [OK]    C08: seis fases y validación correcta (3 OK)
+  [OK]    C12: seis fases y validación correcta (3 OK)
+  [OK]    C13: seis fases y validación correcta (4 OK)
+  [OK]    C14: seis fases y validación correcta (3 OK)
+  [OK]    C17: seis fases y validación correcta (5 OK)
+  [OK]    C18: seis fases y validación correcta (4 OK)
+  [OK]    línea base registrada en T6.LINEA_BASE (3 medidas)
+== Parte G · Tus tres incidentes ==
+  [OK]    INC-605: roto y arreglado (3 OK, 20261126T175934Z_INC-605_verificar.txt)
+  [OK]    INC-608: roto y arreglado (4 OK, 20261126T180019Z_INC-608_verificar.txt)
+  [OK]    INC-610: roto y arreglado (4 OK, 20261126T180110Z_INC-610_verificar.txt)
+  [OK]    sin trazas activas olvidadas (0)
+  [OK]    sin parámetros del optimizador cambiados en la PDB (0)
+  [OK]    objetos inválidos en T6 (0)
+== Parte H · Respuestas, Git y uso de IA ==
+  [OK]    respuestas en docs/bitacora/lab7-respuestas.md
+  [OK]    config/.env fuera de Git
+  [OK]    scripts/t6/salidas fuera de Git
+  [OK]    ningún archivo de la base ni traza en Git
+  [OK]    login.sql con tu código (prompt de SQLcl)
+  [OK]    código de alumno E058 en config/.env
+  [OK]    docs/bitacora/lab7-ia.md con 1 entrada(s) declarada(s)
+  [OK]    primera línea: «He leído la política de uso de IA de la asignatura.»
+  [AVISO] archivos de agente de IA en tu carpeta, fuera de Git: .claude, CLAUDE.md  -> no los subas: añádelos a .gitignore
+  [OK]    ningún commit con firma o coautor de IA (lab6-final..HEAD)
+  [OK]    respuestas sin marcas de texto generado
+  [OK]    78 evidencias con tu cabecera (E058) y una sola base de datos
+
+RESULTADO: TODO OK. Lab 7 listo para entregar.
